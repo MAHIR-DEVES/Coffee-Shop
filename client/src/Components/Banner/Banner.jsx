@@ -106,7 +106,7 @@ const Banner = () => {
         ></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-0">
         <div className="h-[500px] sm:h-[600px] lg:h-[700px] flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center w-full py-8 sm:py-12 lg:py-16">
             {/* Left Content - Responsive */}

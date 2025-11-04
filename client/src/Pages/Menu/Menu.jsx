@@ -237,31 +237,31 @@ const Menu = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 -mt-8 relative z-10">
-        {/* ✅ Modern Filter Section – Fully Responsive */}
-        <div className="bg-white/80 backdrop-blur-lg rounded-md shadow-2xl border border-white/20 p-4 sm:p-6 mb-8">
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-between">
+        {/* ✅ Modern Filter Section – Icons Only on Mobile */}
+        <div className="bg-white/80 backdrop-blur-lg rounded-md  shadow-lg sm:shadow-2xl border border-white/20 p-3 sm:p-4 lg:p-6 mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 items-center justify-between">
             {/* Search Box */}
             <div className="relative w-full sm:flex-1 sm:max-w-md">
-              <FaSearch className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="text"
                 placeholder="Search drinks, desserts..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-500 text-gray-700"
+                className="w-full pl-9 sm:pl-10 lg:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 lg:py-4 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent placeholder-gray-500 text-gray-700 text-sm sm:text-base"
               />
             </div>
 
             {/* Results Count */}
-            <div className="flex items-center gap-2 sm:gap-4 mt-3 sm:mt-0">
-              <span className="text-sm sm:text-base text-gray-600 bg-white/50 px-3 py-2 rounded-xl">
+            <div className="flex items-center gap-2 mt-2 sm:mt-0 hidden md:flex">
+              <span className="text-xs sm:text-sm lg:text-base text-gray-600 bg-white/50 px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl">
                 {filteredItems.length} items
               </span>
             </div>
           </div>
 
-          {/* Category Chips */}
-          <div className="flex flex-wrap gap-3 mt-4 sm:mt-6 justify-center sm:justify-start">
+          {/* Category Chips - Icons Only on Mobile */}
+          <div className="flex flex-wrap gap-2 sm:gap-3 mt-3 sm:mt-4 lg:mt-6 justify-center sm:justify-start">
             {menuCategories.map(category => {
               const IconComponent = category.icon;
               const isActive = activeCategory === category.id;
@@ -269,16 +269,21 @@ const Menu = () => {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                  className={`group flex items-center gap-1 sm:gap-2 lg:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg sm:rounded-xl lg:rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 ${
                     isActive
-                      ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                      : 'bg-white/60 text-gray-700 hover:bg-white/80 hover:shadow-lg'
+                      ? `bg-gradient-to-r ${category.color} text-white shadow-md sm:shadow-lg`
+                      : 'bg-white/60 text-gray-700 hover:bg-white/80 hover:shadow-sm sm:hover:shadow-lg'
                   }`}
                 >
-                  <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
-                  <span className="text-xs sm:text-sm">{category.name}</span>
+                  <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 flex-shrink-0" />
+
+                  {/* Text hidden on mobile, shown on sm+ */}
+                  <span className="hidden sm:inline text-sm lg:text-base whitespace-nowrap">
+                    {category.name}
+                  </span>
+
                   <span
-                    className={`px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs ${
+                    className={`px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[10px] sm:text-xs min-w-[20px] text-center ${
                       isActive ? 'bg-white/20' : 'bg-gray-200/60'
                     }`}
                   >
